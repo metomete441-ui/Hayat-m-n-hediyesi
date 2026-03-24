@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bizim Hikayemiz ❤️</title>
+    <style>
+        /* Genel Ayarlar */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background: #fdfbfb; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            color: #333; 
+            overflow-x: hidden;
+        }
+        
+        /* Üst Başlık Alanı */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            color: #2d3436;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        .header h1 { font-size: 2rem; margin-bottom: 10px; color: #d63031; }
+        .header p { font-size: 1.1rem; font-style: italic; opacity: 0.9; }
+
+        /* Zaman Tüneli Yapısı */
+        .timeline {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Ortadaki Dikey Çizgi */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #ffb8b8;
+            top: 0;
+            bottom: 0;
+            left: 50px;
+            margin-left: -2px;
+        }
+
+        /* Her Bir Zaman Dilimi (Katman) */
+        .timeline-item {
+            padding: 10px 20px 40px 80px;
+            position: relative;
+            background-color: inherit;
+            width: 100%;
+            opacity: 0; 
+            transform: translateY(30px);
+            transition: all 0.7s ease-out;
+        }
+
+        /* Kaydırma ile Görünürlük Kazanan Class */
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Çizgi Üzerindeki Kalp Simgeleri */
+        .timeline-item::after {
+            content: '❤️';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border: 3px solid #ff7675;
+            top: 15px;
+            left: 35px;
+            border-radius: 50%;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 0 0 4px white;
+        }
+
+        /* Kart Tasarımı */
+        .timeline-card {
+            padding: 25px;
+            background: white;
+            position: relative;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border: 1px solid #f1f2f6;
+        }
+
+        .timeline-card h2 {
+            color: #d63031;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline-card p {
+            line-height: 1.6;
+            color: #636e72;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Fotoğraf Galerisi (Grid) */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px; 
+            margin-top: 15px;
+        }
+
+        .photo-gallery.single-photo {
+            grid-template-columns: 1fr; 
+        }
+
+        .photo-gallery img {
+            width: 100%;
+            height: 150px; 
+            object-fit: cover; 
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease; 
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.03); 
+        }
+
+        /* Harita Alanı */
+        .map-title {
+            font-size: 1rem;
+            color: #d63031;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 2px solid #ffb8b8;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            display: block;
+        }
+
+        /* Alt Mesaj */
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 1.4rem;
+            color: #d63031;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Mobil Uyumluluk Ayarı */
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.6rem; }
+            .timeline-item { padding-left: 70px; padding-right: 10px; }
+            .timeline::after { left: 40px; }
+            .timeline-item::after { left: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>5. Ayımız Kutlu Olsun Hayatımm ❤️</h1>
+        <p>Mi amor, seninle geçen her an yeni bir hikaye...</p>
+    </div>
+
+    <div class="timeline">
+        
+        <div class="timeline-item">
+            <div class="timeline-card">
+                <h2>O İlk Gün 🌟</h2>
+                <p>Her şeyin başladığı muazzam gün senin isminle beraber kalbime kazındı rüya gibi ama gerçek bulutların üzerinde olmak gibiydi seni tanımak </p>
+                
+                <div class="photo-gallery">
+                    <img src="images/foto1.png.jpeg" alt="İlk Gün">
+                    <img src="images/foto7.png.jpeg" alt="İlk Gün">
+                    <img src="images/foto14.png.jpeg" alt="İlk Gün">
+                    <img src="images/foto5.png.jpeg" alt="İlk Gün">
+                </div>
+
+                <div class="map-title">📍 İşte Burada Tanıştık</div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d334.46822251646495!2d32.48798994518089!3d37.874712298966585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1za8O8bHTDvHIgcGFyaw!5e1!3m2!1str!2str!4v1774389432921!5m2!1str!2str" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-card">
+                <h2>1. Ay: İlk Adımlar 😊</h2>
+                <p>Hayatımı muazzam bir şekilde renkendirişini hayretle izliyordum dünyayı o güzel gözlerinden görüyor senin kokunla nefes alıyordum bu bir rüya ise sonsuza kadar sürsün gülüşmelerimiz hiç bitmesin.</p>
+                <div class="photo-gallery">
+                    <img src="images/foto15.png.jpg" alt="1. Ay">
+                    <img src="images/foto8.png.jpeg" alt="1. Ay">
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-card">
+                <h2>Sana bakmaya doyamıyorum  ☕</h2>
+                <p>Bazen bir kahve içerken manzaya bakmak temiz hava çekmek ister insan bu onu rahatlatır heh işte sen benim manzaramın nefes aldığım havanın ta kendisiydin ben huzuru senin kalbinde gözlerinde buldum .</p>
+                <div class="photo-gallery single-photo">
+                    <img src="images/foto4.png.jpg" alt="Favori Anımız">
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-card">
+                <h2>5. Ay ve Sonsuza... ♾️</h2>
+                <p>Seninle bi ayı daha geride bıraktık hayatım  takvim değişir hayat değişir ama benim sana olan sevgim asla değişmeyecek her nefesimde seni seveceğim iyiki varsın herşeyimm..
+                <div class="photo-gallery">
+                    <img src="images/foto18.png.jpg" alt="Bugün">
+                    <img src="images/foto19.png.jpg" alt="Bugün">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Seni Çok Seviyorum Bitanemmm 🌹
+    </div>
+
+    <script>
+        // Sayfa kaydırıldıkça kartların belirmesini sağlayan modern gözlemci (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Bir kere görünen kart bir daha kaybolmaz (akıcılık için)
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+
+</body>
+</html>
