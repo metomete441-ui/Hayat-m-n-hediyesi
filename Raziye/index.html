@@ -185,7 +185,7 @@
         }
 
         /* ====================================================
-           GELİŞMİŞ FOTOĞRAF ÇİÇEĞİ (DEKORATİF YAPRAKLARLA)
+           ÇİÇEK GALERİSİ BÖLÜMÜ
            ==================================================== */
         .flower-anit {
             text-align: center;
@@ -210,11 +210,10 @@
             margin: 0 auto;
         }
 
-        /* Satır ayarları */
         .top-row, .bottom-row {
             display: flex;
             justify-content: center;
-            align-items: center; /* Ortadaki büyük resimle yandaki küçükleri ortalar */
+            align-items: center; 
             gap: 10px;
             width: 100%;
         }
@@ -226,9 +225,8 @@
             width: 100%;
         }
 
-        /* YENİ: Fotoğrafı olmayan küçük süs yaprakları */
         .decorative-petal {
-            width: 75px; /* Fotoğraflı yapraklardan (100px) biraz daha küçük */
+            width: 75px; 
             height: 75px;
             border-radius: 50%;
             background: linear-gradient(135deg, #ffc3c8 0%, #ffe3e6 100%);
@@ -238,10 +236,9 @@
             align-items: center;
             justify-content: center;
             font-size: 1.6rem;
-            cursor: default; /* Tıklanmaz olduğu için varsayılan imleç */
+            cursor: default; 
         }
 
-        /* Orijinal dönebilen 3D fotoğraflı yapraklar */
         .flower-petal {
             width: 100px; 
             height: 100px;
@@ -345,6 +342,11 @@
                     <img src="images/foto7.png.jpeg" alt="İlk Gün">
                     <img src="images/foto14.png.jpeg" alt="İlk Gün">
                     <img src="images/foto5.png.jpeg" alt="İlk Gün">
+                </div>
+
+                <div class="map-title">📍 İşte Burada Tanıştık</div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d334.46822251646495!2d32.48798994518089!3d37.874712298966585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1za8O8bHTDvHIgcGFyaw!5e1!3m2!1str!2str!4v1774389432921!5m2!1str!2str" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
@@ -454,7 +456,6 @@
     </div>
 
     <script>
-        // Sayfa kaydırıldıkça kartların belirmesini sağlayan modern gözlemci
         const observerOptions = {
             root: null,
             rootMargin: '0px',
