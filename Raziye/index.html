@@ -136,7 +136,7 @@
             transform: scale(1.03); 
         }
 
-        /* --- YENİ EKLENEN FOTOĞRAF HİZALAMA SINIFLARI --- */
+        /* FOTOĞRAF HİZALAMA SINIFLARI */
         .sola-kaydir { object-position: left center !important; }
         .saga-kaydir { object-position: right center !important; }
         .uste-kaydir { object-position: center top !important; }
@@ -167,26 +167,27 @@
             display: block;
         }
 
-        /* Spotify Butonu Stili */
-        .spotify-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
+        /* Müzik Butonu Stili */
+        .music-btn {
+            display: inline-block;
+            margin-top: 15px;
             padding: 12px 25px;
-            background-color: #1DB954;
+            background-color: #ff7675;
             color: white;
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
             font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 118, 117, 0.4);
             transition: transform 0.3s ease, background-color 0.3s ease;
+            width: 100%;
         }
 
-        .spotify-btn:hover {
-            transform: scale(1.05);
-            background-color: #1ed760;
+        .music-btn:hover {
+            transform: scale(1.03);
+            background-color: #d63031;
         }
 
         /* Alt Mesaj */
@@ -223,7 +224,11 @@
                 <p>Her şeyin başladığı muazzam gün senin isminle beraber kalbime kazındı rüya gibi ama gerçek bulutların üzerinde olmak gibiydi seni tanımak </p>
                 
                 <div class="photo-gallery">
-                    <img src="images/foto1.png.jpeg" alt="İlk Gün"> <img src="images/foto7.png.jpeg" alt="İlk Gün" class="saga-kaydir"> <img src="images/foto14.png.jpeg" alt="İlk Gün" class="sola-kaydir"> <img src="images/foto5.png.jpeg" alt="İlk Gün" class="uste-kaydir"> </div>
+                    <img src="images/foto1.png.jpeg" alt="İlk Gün">
+                    <img src="images/foto7.png.jpeg" alt="İlk Gün">
+                    <img src="images/foto14.png.jpeg" alt="İlk Gün">
+                    <img src="images/foto5.png.jpeg" alt="İlk Gün">
+                </div>
 
                 <div class="map-title">📍 İşte Burada Tanıştık</div>
                 <div class="map-container">
@@ -244,14 +249,17 @@
         </div>
 
         <div class="timeline-item">
-            <div class="timeline-card" style="text-align: center; border: 2px solid #1DB954;">
+            <div class="timeline-card" style="text-align: center; border: 2px solid #ff7675;">
                 <h2>🎧 Senin Şarkın</h2>
-                <p>Sana bakarken içimden hep bu şarkı geçiyor  çünkü dünyanın en güzel kızı tam karşımda duruyor... <br><br> 
-                <i>(Not: Linke tıkla ve şarkıyı tam <b>1:25'e</b> kaydır, asıl söylemek istediğim orası 😉)</i></p>
+                <p>Sana bakarken içimden hep bu şarkı geçiyor çünkü dünyanın en güzel kızı tam karşımda duruyor... </p>
                 
-                <a href="https://open.spotify.com/intl-tr/track/3naYqiHrwFLitIKYHHJgvo?si=7599ce1847f74af1" target="_blank" class="spotify-btn">
-                    Spotify'da Dinle 💚
-                </a>
+                <audio id="ozel-sarki">
+                    <source src="sarki.mp3" type="audio/mpeg">
+                </audio>
+
+                <button onclick="sarkiyiBaslat()" id="muzik-butonu" class="music-btn">
+                    🎵 Bize Özel Şarkıyı Dinle
+                </button>
             </div>
         </div>
 
@@ -301,6 +309,28 @@
         document.querySelectorAll('.timeline-item').forEach(item => {
             observer.observe(item);
         });
+
+        // ŞARKIYI 1:25'TEN (85. Saniye) BAŞLATMA FONKSİYONU
+        function sarkiyiBaslat() {
+            const sarki = document.getElementById("ozel-sarki");
+            const buton = document.getElementById("muzik-butonu");
+            
+            // Eğer şarkı çalıyorsa durdur (opsiyonel kullanım için)
+            if (!sarki.paused) {
+                sarki.pause();
+                buton.innerText = "🎵 Bize Özel Şarkıyı Dinle";
+                buton.style.backgroundColor = "#ff7675";
+                return;
+            }
+
+            // 1 dakika 25 saniye = 85 saniye
+            sarki.currentTime = 85; 
+            sarki.play();
+            
+            // Tıklandıktan sonra butonun yazısı ve rengi değişsin
+            buton.innerText = "🎶 Şarkımız Çalıyor... (Durdurmak için tıkla)";
+            buton.style.backgroundColor = "#d63031";
+        }
     </script>
 
 </body>
