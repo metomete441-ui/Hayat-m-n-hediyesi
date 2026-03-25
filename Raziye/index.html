@@ -126,6 +126,7 @@
             width: 100%;
             height: 150px; 
             object-fit: cover; 
+            object-position: center; /* Varsayılan olarak tam ortadan kırpar */
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s ease; 
@@ -134,6 +135,12 @@
         .photo-gallery img:hover {
             transform: scale(1.03); 
         }
+
+        /* --- YENİ EKLENEN FOTOĞRAF HİZALAMA SINIFLARI --- */
+        .sola-kaydir { object-position: left center !important; }
+        .saga-kaydir { object-position: right center !important; }
+        .uste-kaydir { object-position: center top !important; }
+        .alta-kaydir { object-position: center bottom !important; }
 
         /* Harita Alanı */
         .map-title {
@@ -158,6 +165,28 @@
             height: 250px;
             border: none;
             display: block;
+        }
+
+        /* Spotify Butonu Stili */
+        .spotify-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            padding: 12px 25px;
+            background-color: #1DB954;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .spotify-btn:hover {
+            transform: scale(1.05);
+            background-color: #1ed760;
         }
 
         /* Alt Mesaj */
@@ -194,11 +223,7 @@
                 <p>Her şeyin başladığı muazzam gün senin isminle beraber kalbime kazındı rüya gibi ama gerçek bulutların üzerinde olmak gibiydi seni tanımak </p>
                 
                 <div class="photo-gallery">
-                    <img src="images/foto1.png.jpeg" alt="İlk Gün">
-                    <img src="images/foto7.png.jpeg" alt="İlk Gün">
-                    <img src="images/foto14.png.jpeg" alt="İlk Gün">
-                    <img src="images/foto5.png.jpeg" alt="İlk Gün">
-                </div>
+                    <img src="images/foto1.png.jpeg" alt="İlk Gün"> <img src="images/foto7.png.jpeg" alt="İlk Gün" class="saga-kaydir"> <img src="images/foto14.png.jpeg" alt="İlk Gün" class="sola-kaydir"> <img src="images/foto5.png.jpeg" alt="İlk Gün" class="uste-kaydir"> </div>
 
                 <div class="map-title">📍 İşte Burada Tanıştık</div>
                 <div class="map-container">
@@ -219,6 +244,18 @@
         </div>
 
         <div class="timeline-item">
+            <div class="timeline-card" style="text-align: center; border: 2px solid #1DB954;">
+                <h2>🎧 Senin Şarkın</h2>
+                <p>Sana bakarken içimden hep bu şarkı geçiyor  çünkü dünyanın en güzel kızı tam karşımda duruyor... <br><br> 
+                <i>(Not: Linke tıkla ve şarkıyı tam <b>1:25'e</b> kaydır, asıl söylemek istediğim orası 😉)</i></p>
+                
+                <a href="https://open.spotify.com/track/4zH1g5S1vGzHn98p45A0T5?si=03761356f91d4e0b" target="_blank" class="spotify-btn">
+                    Spotify'da Dinle 💚
+                </a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
             <div class="timeline-card">
                 <h2>Sana bakmaya doyamıyorum  ☕</h2>
                 <p>Bazen bir kahve içerken manzaya bakmak temiz hava çekmek ister insan bu onu rahatlatır heh işte sen benim manzaramın nefes aldığım havanın ta kendisiydin ben huzuru senin kalbinde gözlerinde buldum .</p>
@@ -231,7 +268,7 @@
         <div class="timeline-item">
             <div class="timeline-card">
                 <h2>5. Ay ve Sonsuza... ♾️</h2>
-                <p>Seninle bi ayı daha geride bıraktık hayatım  takvim değişir hayat değişir ama benim sana olan sevgim asla değişmeyecek her nefesimde seni seveceğim iyiki varsın herşeyimm..
+                <p>Seninle bi ayı daha geride bıraktık hayatım  takvim değişir hayat değişir ama benim sana olan sevgim asla değişmeyecek her nefesimde seni seveceğim iyiki varsın herşeyimm..</p>
                 <div class="photo-gallery">
                     <img src="images/foto18.png.jpg" alt="Bugün">
                     <img src="images/foto19.png.jpg" alt="Bugün">
@@ -246,7 +283,7 @@
     </div>
 
     <script>
-        // Sayfa kaydırıldıkça kartların belirmesini sağlayan modern gözlemci (Intersection Observer)
+        // Sayfa kaydırıldıkça kartların belirmesini sağlayan modern gözlemci
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -257,7 +294,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Bir kere görünen kart bir daha kaybolmaz (akıcılık için)
                 }
             });
         }, observerOptions);
